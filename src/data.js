@@ -118,7 +118,8 @@ export const routes = [
     ],
   },
 ];
-export const photo = (filename) => `/images/${filename}`;
+export const photo = (filename) =>
+  `${import.meta.env.BASE_URL}images/${filename}`;
 export function filterDestinations(items, category, query) {
   const term = query.trim().toLocaleLowerCase("ru");
   return items.filter(

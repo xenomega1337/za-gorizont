@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -15,6 +15,12 @@ import { Tag, DestinationCard, Callout } from "../components/shared.jsx";
 
 export default function Home() {
   const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+
+  function handleSearch(event) {
+    event.preventDefault();
+    navigate(`/destinations?q=${encodeURIComponent(query.trim())}`);
+  }
   return (
     <>
       <section className="hero container">
@@ -53,7 +59,7 @@ export default function Home() {
         <div className="hero-coordinate">50°18′ N &nbsp; 87°36′ E</div>
       </section>
       <section className="container search-wrap">
-        <form className="travel-search" action="/destinations">
+        <form className="travel-search" onSubmit={handleSearch}>
           <div className="search-intro">
             <Compass size={24} />
             <span>
